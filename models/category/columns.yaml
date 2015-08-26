@@ -1,0 +1,12 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: abnmt.theaterpress::lang.category.name
+        searchable: true
+
+    post_count:
+        label: abnmt.theaterpress::lang.category.posts
+        sortable: false

@@ -1,0 +1,7 @@
+1.0.1:
+    - First version of TheaterPress
+    - create_posts_table.php
+    - create_categories_table.php
+1.0.2:
+    - Seed data
+    - seed_data.php

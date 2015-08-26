@@ -1,0 +1,15 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: abnmt.theaterpress::lang.category.name
+        placeholder: abnmt.theaterpress::lang.category.name_placeholder
+        span: left
+
+    slug:
+        label: abnmt.theaterpress::lang.category.slug
+        span: right
+        placeholder: abnmt.theaterpress::lang.category.slug_placeholder
+        preset: name

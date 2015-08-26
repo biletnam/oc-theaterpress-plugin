@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: abnmt.theaterpress::lang.category.label
+
+# Model Form Field configuration
+form: $/abnmt/theaterpress/models/category/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\TheaterPress\Models\Category
+
+# Default redirect location
+defaultRedirect: abnmt/theaterpress/categories
+
+# Create page
+create:
+    title: abnmt.theaterpress::lang.category.create_title
+    redirect: abnmt/theaterpress/categories/update/:id
+    redirectClose: abnmt/theaterpress/categories
+
+# Update page
+update:
+    title: abnmt.theaterpress::lang.category.update_title
+    redirect: abnmt/theaterpress/categories
+    redirectClose: abnmt/theaterpress/categories
+
+# Preview page
+preview:
+    title: abnmt.theaterpress::lang.category.preview_title

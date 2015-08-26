@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'plugin' => [
+        'name' => 'Новости',
+        'description' => 'Плагин новостей',
+    ],
+    'components' => [
+        'archive' => [
+            'name' => 'Архив новостей',
+            'description' => 'Выводит архив новостей',
+        ],
+        'feed' => [
+            'name' => 'Новостная лента',
+            'description' => 'Выводит новостную ленту',
+        ],
+        'press' => [
+            'name' => 'Новость',
+            'description' => 'Выводит одиночную новость',
+        ],
+    ],
+    'category' => [
+        'label' => 'Категории',
+        'create_title' => 'Создание',
+        'update_title' => 'Обновление',
+        'preview_title' => 'Просмотр',
+        'list_title' => 'Список',
+        'new' => 'Новая',
+        'name_placeholder' => 'Введите наименование категории',
+        'name' => 'Наименование',
+        'slug' => 'URL',
+        'slug_placeholder' => 'Введите URL категории',
+        'posts' => 'Записи',
+    ],
+    'categories' => [
+        'menu_label' => 'Категории',
+        'return_to_list' => 'Вернуться к списку категорий',
+        'delete_confirm' => 'Удалить категорию?',
+        'delete_selected_confirm' => 'Удалить выбранные категории?',
+        'delete_selected_success' => 'Удалено',
+        'delete_selected_empty' => 'Выбор пуст',
+    ],
+    'post' => [
+        'title' => 'Заголовок',
+        'categories' => 'Категории',
+        'published' => 'Опубликовано',
+        'title_placeholder' => 'Введите заголовок новости',
+        'slug' => 'URL',
+        'slug_placeholder' => 'Введите URL новости',
+        'tab_categories' => 'Категории',
+        'categories_comment' => 'Доступные категории',
+        'categories_placeholder' => 'Выберите категории',
+        'tab_manage' => 'Управление',
+        'published_on' => 'Дата',
+        'summary' => 'Цитата',
+        'cover' => 'Обложка',
+        'label' => 'abnmt.theaterpress::lang.post.label',
+        'create_title' => 'Создание',
+        'update_title' => 'Обновление',
+        'preview_title' => 'Просмотр',
+        'list_title' => 'Список новостей',
+        'new' => 'Новая новость',
+        'tab_content' => 'Содержимое',
+    ],
+    'posts' => [
+        'menu_label' => 'Новости',
+        'return_to_list' => 'Вернуться к списку новостей',
+        'delete_confirm' => 'Удалить новость?',
+        'delete_selected_confirm' => 'Удалить выбранные новости?',
+        'delete_selected_success' => 'Удалено',
+        'delete_selected_empty' => 'Выбор пуст',
+    ],
+];

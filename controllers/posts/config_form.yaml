@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: abnmt.theaterpress::lang.post.label
+
+# Model Form Field configuration
+form: $/abnmt/theaterpress/models/post/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\TheaterPress\Models\Post
+
+# Default redirect location
+defaultRedirect: abnmt/theaterpress/posts
+
+# Create page
+create:
+    title: abnmt.theaterpress::lang.post.create_title
+    redirect: abnmt/theaterpress/posts/update/:id
+    redirectClose: abnmt/theaterpress/posts
+
+# Update page
+update:
+    title: abnmt.theaterpress::lang.post.update_title
+    redirect: abnmt/theaterpress/posts
+    redirectClose: abnmt/theaterpress/posts
+
+# Preview page
+preview:
+    title: abnmt.theaterpress::lang.post.preview_title
