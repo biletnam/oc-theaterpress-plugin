@@ -4,15 +4,15 @@ use Model;
 use Str;
 
 /**
- * Post Model
+ * Article Model
  */
-class Post extends Model
+class Article extends Model
 {
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'abnmt_theaterpress_posts';
+    public $table = 'abnmt_theaterpress_articles';
 
     /**
      * @var array Guarded fields
@@ -48,7 +48,7 @@ class Post extends Model
     public $hasMany = [];
     public $belongsTo = [];
     public $belongsToMany = [
-        'categories' => ['Abnmt\TheaterPress\Models\Category', 'table' => 'abnmt_theaterpress_posts_categories', 'order' => 'name']
+        'categories' => ['Abnmt\TheaterPress\Models\Category', 'table' => 'abnmt_theaterpress_articles_categories', 'order' => 'name']
     ];
     public $morphTo = [];
     public $morphOne = [];
@@ -71,7 +71,7 @@ class Post extends Model
     //
 
     /**
-     * The attributes of posts Scopes
+     * The attributes of articles Scopes
      * @var array
      */
     public static $allowedScopingOptions = [
@@ -100,7 +100,7 @@ class Post extends Model
 
 
     /**
-     * Lists posts for the front end
+     * Lists articles for the front end
      * @param  array $options Display options
      * @return self
      */

@@ -3,13 +3,13 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class CreatePostsTable extends Migration
+class CreateArticlesTable extends Migration
 {
 
     public function up()
     {
-        Schema::dropIfExists('abnmt_theaterpress_posts');
-        Schema::create('abnmt_theaterpress_posts', function($table)
+        Schema::dropIfExists('abnmt_theaterpress_articles');
+        Schema::create('abnmt_theaterpress_articles', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -28,7 +28,7 @@ class CreatePostsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('abnmt_theaterpress_posts');
+        Schema::dropIfExists('abnmt_theaterpress_articles');
     }
 
 }

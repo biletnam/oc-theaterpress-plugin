@@ -2,7 +2,7 @@
 
 use System\Models\File as File;
 
-use Abnmt\TheaterPress\Models\Post;
+use Abnmt\TheaterPress\Models\Article;
 use Abnmt\TheaterPress\Models\Category;
 
 use October\Rain\Database\Updates\Seeder;
@@ -22,7 +22,7 @@ class SeedPeopleTable extends Seeder
                 unset($model['category']);
             }
 
-            $model = $this->createModel( 'Abnmt\TheaterPress\Models\Post', $model);
+            $model = $this->createModel( 'Abnmt\TheaterPress\Models\Article', $model);
 
             if (isset($categories))
                 $this->addTaxonomy('Abnmt\TheaterPress\Models\Category', $categories, $model);

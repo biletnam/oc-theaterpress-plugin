@@ -3,7 +3,7 @@
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 
-use Abnmt\TheaterPress\Models\Post     as PostModel;
+use Abnmt\TheaterPress\Models\Article     as ArticleModel;
 use Abnmt\TheaterPress\Models\Category as CategoryModel;
 
 use CW;
@@ -20,10 +20,10 @@ class Archive extends ComponentBase
     }
 
     /**
-     * A collection of posts to display
+     * A collection of articles to display
      * @var Collection
      */
-    public $posts;
+    public $articles;
 
     /**
      * Parameter to use for the page number
@@ -38,7 +38,7 @@ class Archive extends ComponentBase
     public $category;
 
     /**
-     * Reference to the page name for linking to posts.
+     * Reference to the page name for linking to articles.
      * @var string
      */
     public $postPage;
@@ -53,34 +53,34 @@ class Archive extends ComponentBase
     {
         return [
             'pageNumber' => [
-                'title'       => 'abnmt.theaterpress::lang.settings.posts_pagination',
-                'description' => 'abnmt.theaterpress::lang.settings.posts_pagination_description',
+                'title'       => 'abnmt.theaterpress::lang.settings.articles_pagination',
+                'description' => 'abnmt.theaterpress::lang.settings.articles_pagination_description',
                 'type'        => 'string',
                 'default'     => '{{ :page }}',
             ],
             'categoryFilter' => [
-                'title'       => 'abnmt.theaterpress::lang.settings.posts_filter',
-                'description' => 'abnmt.theaterpress::lang.settings.posts_filter_description',
+                'title'       => 'abnmt.theaterpress::lang.settings.articles_filter',
+                'description' => 'abnmt.theaterpress::lang.settings.articles_filter_description',
                 'type'        => 'string',
                 'default'     => ''
             ],
-            'postsPerPage' => [
-                'title'             => 'abnmt.theaterpress::lang.settings.posts_per_page',
+            'articlesPerPage' => [
+                'title'             => 'abnmt.theaterpress::lang.settings.articles_per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'abnmt.theaterpress::lang.settings.posts_per_page_validation',
+                'validationMessage' => 'abnmt.theaterpress::lang.settings.articles_per_page_validation',
                 'default'           => '10',
             ],
             'categoryPage' => [
-                'title'       => 'abnmt.theaterpress::lang.settings.posts_category',
-                'description' => 'abnmt.theaterpress::lang.settings.posts_category_description',
+                'title'       => 'abnmt.theaterpress::lang.settings.articles_category',
+                'description' => 'abnmt.theaterpress::lang.settings.articles_category_description',
                 'type'        => 'dropdown',
                 'default'     => 'theaterPress/category',
                 'group'       => 'Страницы',
             ],
             'postPage' => [
-                'title'       => 'abnmt.theaterpress::lang.settings.posts_post',
-                'description' => 'abnmt.theaterpress::lang.settings.posts_post_description',
+                'title'       => 'abnmt.theaterpress::lang.settings.articles_post',
+                'description' => 'abnmt.theaterpress::lang.settings.articles_post_description',
                 'type'        => 'dropdown',
                 'default'     => 'theaterPress/post',
                 'group'       => 'Страницы',
@@ -92,7 +92,7 @@ class Archive extends ComponentBase
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
-    public function getPostPageOptions()
+    public function getArticlePageOptions()
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
@@ -103,7 +103,7 @@ class Archive extends ComponentBase
         $this->prepareVars();
 
         $this->category = $this->page['category'] = $this->loadCategory();
-        $this->posts    = $this->page['posts']    = $this->listPosts();
+        $this->articles    = $this->page['articles']    = $this->listArticles();
 
         /*
          * If the page number is not valid, redirect
@@ -111,7 +111,7 @@ class Archive extends ComponentBase
         if ($pageNumberParam = $this->paramName('pageNumber')) {
             $currentPage = $this->property('pageNumber');
 
-            if ($currentPage > ($lastPage = $this->posts->lastPage()) && $currentPage > 1)
+            if ($currentPage > ($lastPage = $this->articles->lastPage()) && $currentPage > 1)
                 return Redirect::to($this->currentPageUrl([$pageNumberParam => $lastPage]));
         }
     }
@@ -127,23 +127,23 @@ class Archive extends ComponentBase
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
     }
 
-    protected function listPosts()
+    protected function listArticles()
     {
         $categories = $this->category ? $this->category->id : null;
 
         /*
-         * List all the posts, eager load their categories
+         * List all the articles, eager load their categories
          */
-        $posts = PostModel::with('categories')->listFrontEnd([
+        $articles = ArticleModel::with('categories')->listFrontEnd([
             'page'       => $this->property('pageNumber'),
-            'perPage'    => $this->property('postsPerPage'),
+            'perPage'    => $this->property('articlesPerPage'),
             'categories' => $categories
         ]);
 
         /*
          * Add a "url" helper attribute for linking to each post and category
          */
-        $posts->each(function($post){
+        $articles->each(function($post){
             $post->setUrl($this->postPage, $this->controller);
 
             $post->categories->each(function($category){
@@ -151,9 +151,9 @@ class Archive extends ComponentBase
             });
         });
 
-        CW::info(['PressArchive' => $posts]);
+        CW::info(['PressArchive' => $articles]);
 
-        return $posts;
+        return $articles;
     }
 
     protected function loadCategory()

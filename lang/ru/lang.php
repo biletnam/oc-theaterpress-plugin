@@ -30,7 +30,7 @@ return [
         'name' => 'Наименование',
         'slug' => 'URL',
         'slug_placeholder' => 'Введите URL категории',
-        'posts' => 'Записи',
+        'articles' => 'Записи',
     ],
     'categories' => [
         'menu_label' => 'Категории',
@@ -62,7 +62,7 @@ return [
         'new' => 'Новая новость',
         'tab_content' => 'Содержимое',
     ],
-    'posts' => [
+    'articles' => [
         'menu_label' => 'Новости',
         'return_to_list' => 'Вернуться к списку новостей',
         'delete_confirm' => 'Удалить новость?',

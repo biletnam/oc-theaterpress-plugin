@@ -2,7 +2,7 @@
 
 use System\Classes\PluginBase;
 
-use Abnmt\TheaterPress\Models\Post     as PostModel;
+use Abnmt\TheaterPress\Models\Article     as ArticleModel;
 use Abnmt\TheaterPress\Models\Category as CategoryModel;
 
 use Illuminate\Foundation\AliasLoader;
@@ -34,14 +34,14 @@ class Plugin extends PluginBase
         return [
             'theaterpress' => [
                 'label' => 'Новости',
-                'url' => \Backend::url('abnmt/theaterpress/posts'),
+                'url' => \Backend::url('abnmt/theaterpress/articles'),
                 'icon' => 'icon-presspaper-o',
                 'order' => 500,
                 'sideMenu' => [
-                    'posts' => [
+                    'articles' => [
                         'label' => 'Новости',
                         'icon'  => 'icon-presspaper-o',
-                        'url'   => \Backend::url('abnmt/theaterpress/posts'),
+                        'url'   => \Backend::url('abnmt/theaterpress/articles'),
                     ],
                     'categories' => [
                         'label' => 'Категории',
@@ -83,12 +83,12 @@ class Plugin extends PluginBase
 
         Event::listen('pages.menuitem.getTypeInfo', function($type) {
             if ($type == 'pressarchive')
-                return PostModel::getMenuTypeInfo($type);
+                return ArticleModel::getMenuTypeInfo($type);
         });
 
         Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
             if ($type == 'pressarchive')
-                return PostModel::resolveMenuItem($item, $url, $theme);
+                return ArticleModel::resolveMenuItem($item, $url, $theme);
         });
     }
 

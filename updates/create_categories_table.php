@@ -10,7 +10,7 @@ class CreateCategoriesTable extends Migration
     {
 
         Schema::dropIfExists('abnmt_theaterpress_categories');
-        Schema::dropIfExists('abnmt_theaterpress_posts_categories');
+        Schema::dropIfExists('abnmt_theaterpress_articles_categories');
 
         Schema::create('abnmt_theaterpress_categories', function($table)
         {
@@ -25,7 +25,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('abnmt_theaterpress_posts_categories', function($table)
+        Schema::create('abnmt_theaterpress_articles_categories', function($table)
         {
             $table->engine = 'InnoDB';
             $table->integer('post_id')->unsigned();
@@ -37,7 +37,7 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('abnmt_theaterpress_categories');
-        Schema::dropIfExists('abnmt_theaterpress_posts_categories');
+        Schema::dropIfExists('abnmt_theaterpress_articles_categories');
     }
 
 }

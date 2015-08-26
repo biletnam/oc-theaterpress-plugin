@@ -3,7 +3,7 @@
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 
-use Abnmt\TheaterPress\Models\Post as PostModel;
+use Abnmt\TheaterPress\Models\Article as ArticleModel;
 
 use CW;
 
@@ -55,13 +55,13 @@ class Press extends ComponentBase
     public function onRun()
     {
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
-        $this->post = $this->page['post'] = $this->loadPost();
+        $this->post = $this->page['post'] = $this->loadArticle();
     }
 
-    protected function loadPost()
+    protected function loadArticle()
     {
         $slug = $this->property('slug');
-        $post = PostModel::isPublished()->where('slug', $slug)->first();
+        $post = ArticleModel::isPublished()->where('slug', $slug)->first();
 
         /*
          * Add a "url" helper attribute for linking to each category

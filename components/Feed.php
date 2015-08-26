@@ -3,7 +3,7 @@
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
 
-use Abnmt\TheaterPress\Models\Post as PostModel;
+use Abnmt\TheaterPress\Models\Article as ArticleModel;
 
 use CW;
 
@@ -45,7 +45,7 @@ class Feed extends ComponentBase
         ];
     }
 
-    public function getPostPageOptions()
+    public function getArticlePageOptions()
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
@@ -60,14 +60,14 @@ class Feed extends ComponentBase
 
 
     /**
-     * A collection of posts to display
+     * A collection of articles to display
      * @var Collection
      */
-    public $posts;
+    public $articles;
 
 
     /**
-     * Reference to the page name for linking to posts.
+     * Reference to the page name for linking to articles.
      * @var string
      */
     public $postPage;
@@ -92,7 +92,7 @@ class Feed extends ComponentBase
     {
         $this->prepareVars();
 
-        $this->posts = $this->page['posts'] = $this->loadFeed();
+        $this->articles = $this->page['articles'] = $this->loadFeed();
 
     }
 
@@ -115,12 +115,12 @@ class Feed extends ComponentBase
      */
     protected function loadFeed()
     {
-        $posts = PostModel::getPressFeed();
+        $articles = ArticleModel::getPressFeed();
 
         /*
          * Add a "url" helper attribute for linking to each post and category
          */
-        $posts->each(function($post){
+        $articles->each(function($post){
             $post->setUrl($this->postPage, $this->controller);
 
             $post->categories->each(function($category){
@@ -128,8 +128,8 @@ class Feed extends ComponentBase
             });
         });
 
-        CW::info(['PressFeed' => $posts]);
+        CW::info(['PressFeed' => $articles]);
 
-        return $posts;
+        return $articles;
     }
 }

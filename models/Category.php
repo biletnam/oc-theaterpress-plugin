@@ -31,7 +31,7 @@ class Category extends Model
     public $hasMany = [];
     public $belongsTo = [];
     public $belongsToMany = [
-        'posts' => ['Abnmt\TheaterPress\Models\Post', 'table' => 'abnmt_theaterpress_posts_categories', 'order' => 'published_at desc', 'scope' => 'isPublished']
+        'articles' => ['Abnmt\TheaterPress\Models\Article', 'table' => 'abnmt_theaterpress_articles_categories', 'order' => 'published_at desc', 'scope' => 'isPublished']
     ];
     public $morphTo = [];
     public $morphOne = [];
@@ -54,9 +54,9 @@ class Category extends Model
             $this->slug = Str::slug($this->name);
     }
 
-    public function getPostCountAttribute()
+    public function getArticleCountAttribute()
     {
-        return $this->posts()->count();
+        return $this->articles()->count();
     }
 
     /**

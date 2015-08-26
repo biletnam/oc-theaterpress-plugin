@@ -9,22 +9,22 @@ name: abnmt.theaterpress::lang.post.label
 form: $/abnmt/theaterpress/models/post/fields.yaml
 
 # Model Class name
-modelClass: Abnmt\TheaterPress\Models\Post
+modelClass: Abnmt\TheaterPress\Models\Article
 
 # Default redirect location
-defaultRedirect: abnmt/theaterpress/posts
+defaultRedirect: abnmt/theaterpress/articles
 
 # Create page
 create:
     title: abnmt.theaterpress::lang.post.create_title
-    redirect: abnmt/theaterpress/posts/update/:id
-    redirectClose: abnmt/theaterpress/posts
+    redirect: abnmt/theaterpress/articles/update/:id
+    redirectClose: abnmt/theaterpress/articles
 
 # Update page
 update:
     title: abnmt.theaterpress::lang.post.update_title
-    redirect: abnmt/theaterpress/posts
-    redirectClose: abnmt/theaterpress/posts
+    redirect: abnmt/theaterpress/articles
+    redirectClose: abnmt/theaterpress/articles
 
 # Preview page
 preview:

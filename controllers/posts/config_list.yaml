@@ -6,13 +6,13 @@
 list: $/abnmt/theaterpress/models/post/columns.yaml
 
 # Model Class name
-modelClass: Abnmt\TheaterPress\Models\Post
+modelClass: Abnmt\TheaterPress\Models\Article
 
 # List Title
 title: abnmt.theaterpress::lang.post.list_title
 
 # Link URL for each record
-recordUrl: abnmt/theaterpress/posts/update/:id
+recordUrl: abnmt/theaterpress/articles/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
