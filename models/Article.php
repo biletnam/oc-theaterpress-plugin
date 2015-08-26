@@ -28,10 +28,10 @@ class Article extends Model
      * The attributes that should be mutated to dates.
      * @var array
      */
-    protected $dates = ['published_at'];
+    protected $dates = ['published_at', 'source_date'];
 
     /**
-     * The attributes on which the post list can be ordered
+     * The attributes on which the article list can be ordered
      * @var array
      */
     public static $allowedSortingOptions = array(
@@ -75,7 +75,7 @@ class Article extends Model
      * @var array
      */
     public static $allowedScopingOptions = [
-        'getPressFeed' => 'Новостная лента',
+        // 'getPressFeed' => 'Новостная лента',
     ];
 
     public function scopeIsPublished($query)
@@ -85,19 +85,6 @@ class Article extends Model
             ->where('published', true)
         ;
     }
-
-    public function scopeGetPressFeed($query)
-    {
-        $query
-            ->isPublished()
-            ->with(['cover'])
-            ->orderBy('published_at', 'desc')
-            ->take(6)
-        ;
-
-        return $query->get();
-    }
-
 
     /**
      * Lists articles for the front end

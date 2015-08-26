@@ -7,21 +7,21 @@ use Abnmt\TheaterPress\Models\Article as ArticleModel;
 
 use CW;
 
-class Press extends ComponentBase
+class Article extends ComponentBase
 {
 
     public function componentDetails()
     {
         return [
-            'name'        => 'abnmt.theaterpress::lang.components.press.name',
-            'description' => 'abnmt.theaterpress::lang.components.press.description'
+            'name'        => 'abnmt.theaterpress::lang.components.article.name',
+            'description' => 'abnmt.theaterpress::lang.components.article.description'
         ];
     }
 
     /**
-     * @var The post model used for display.
+     * @var The article model used for display.
      */
-    public $post;
+    public $article;
 
     /**
      * @var string Reference to the page name for linking to categories.
@@ -33,14 +33,14 @@ class Press extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'abnmt.theaterpress::lang.settings.post_slug',
-                'description' => 'abnmt.theaterpress::lang.settings.post_slug_description',
+                'title'       => 'abnmt.theaterpress::lang.settings.article_slug',
+                'description' => 'abnmt.theaterpress::lang.settings.article_slug_description',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string'
             ],
             'categoryPage' => [
-                'title'       => 'abnmt.theaterpress::lang.settings.post_category',
-                'description' => 'abnmt.theaterpress::lang.settings.post_category_description',
+                'title'       => 'abnmt.theaterpress::lang.settings.article_category',
+                'description' => 'abnmt.theaterpress::lang.settings.article_category_description',
                 'type'        => 'dropdown',
                 'default'     => 'theaterPress/category',
             ],
@@ -55,26 +55,26 @@ class Press extends ComponentBase
     public function onRun()
     {
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
-        $this->post = $this->page['post'] = $this->loadArticle();
+        $this->article = $this->page['article'] = $this->loadArticle();
     }
 
     protected function loadArticle()
     {
         $slug = $this->property('slug');
-        $post = ArticleModel::isPublished()->where('slug', $slug)->first();
+        $article = ArticleModel::isPublished()->where('slug', $slug)->first();
 
         /*
          * Add a "url" helper attribute for linking to each category
          */
-        if ($post && $post->categories->count()) {
-            $post->categories->each(function($category){
+        if ($article && $article->categories->count()) {
+            $article->categories->each(function($category){
                 $category->setUrl($this->categoryPage, $this->controller);
             });
         }
 
-        CW::info(['Press' => $post]);
+        CW::info(['Press' => $article]);
 
-        return $post;
+        return $article;
     }
 
 }

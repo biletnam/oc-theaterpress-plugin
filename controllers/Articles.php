@@ -30,11 +30,11 @@ class Articles extends Controller
      */
     public function index_onDelete()
     {
-        if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
+        if (($checkedIds = article('checked')) && is_array($checkedIds) && count($checkedIds)) {
 
-            foreach ($checkedIds as $postId) {
-                if (!$post = Article::find($postId)) continue;
-                $post->delete();
+            foreach ($checkedIds as $articleId) {
+                if (!$article = Article::find($articleId)) continue;
+                $article->delete();
             }
 
             Flash::success(Lang::get('abnmt.theaterpress::lang.articles.delete_selected_success'));

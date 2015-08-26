@@ -28,9 +28,9 @@ class CreateCategoriesTable extends Migration
         Schema::create('abnmt_theaterpress_articles_categories', function($table)
         {
             $table->engine = 'InnoDB';
-            $table->integer('post_id')->unsigned();
+            $table->integer('article_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->primary(['post_id', 'category_id']);
+            // $table->primary(['article_id', 'category_id']);
         });
     }
 

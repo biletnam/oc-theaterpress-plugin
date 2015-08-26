@@ -1,0 +1,83 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: abnmt.theaterpress::lang.article.title
+        span: left
+        placeholder: abnmt.theaterpress::lang.article.title_placeholder
+    slug:
+        label: abnmt.theaterpress::lang.article.slug
+        span: right
+        placeholder: abnmt.theaterpress::lang.article.slug_placeholder
+        preset:
+            field: title
+            type: slug
+
+secondaryTabs:
+    stretch: true
+    fields:
+        author:
+            tab: abnmt.theaterpress::lang.article.tab_content
+            label: Автор
+            span: left
+        source_date:
+            tab: abnmt.theaterpress::lang.article.tab_content
+            label: Дата публикации
+            span: right
+            type: datepicker
+            mode: date
+        source:
+            tab: abnmt.theaterpress::lang.article.tab_content
+            label: Источник
+            span: left
+        source_link:
+            tab: abnmt.theaterpress::lang.article.tab_content
+            label: Ссылка
+            span: right
+        content:
+            tab: abnmt.theaterpress::lang.article.tab_content
+            type: richeditor
+            size: huge
+            # stretch: true
+            # span: left
+            # cssClass: field-slim
+
+        categories:
+            tab: abnmt.theaterpress::lang.article.tab_categories
+            type: relation
+            commentAbove: abnmt.theaterpress::lang.article.categories_comment
+            placeholder: abnmt.theaterpress::lang.article.categories_placeholder
+
+        published:
+            tab: abnmt.theaterpress::lang.article.tab_manage
+            label: abnmt.theaterpress::lang.article.published
+            span: left
+            type: checkbox
+
+        published_at:
+            tab: abnmt.theaterpress::lang.article.tab_manage
+            label: abnmt.theaterpress::lang.article.published_on
+            span: left
+            cssClass: checkbox-align
+            type: datepicker
+            mode: date
+            trigger:
+                action: enable
+                field: published
+                condition: checked
+
+        # excerpt:
+        #     tab: abnmt.theaterpress::lang.article.tab_manage
+        #     label: abnmt.theaterpress::lang.article.summary
+        #     type: textarea
+        #     size: small
+
+        cover:
+            tab: abnmt.theaterpress::lang.article.tab_manage
+            label: abnmt.theaterpress::lang.article.cover
+            type: fileupload
+            mode: image
+            imageWidth: 300
+            imageHeight: 200

@@ -32,7 +32,7 @@ class Archive extends ComponentBase
     public $pageParam;
 
     /**
-     * If the post list should be filtered by a category, the model to use.
+     * If the article list should be filtered by a category, the model to use.
      * @var Model
      */
     public $category;
@@ -41,7 +41,7 @@ class Archive extends ComponentBase
      * Reference to the page name for linking to articles.
      * @var string
      */
-    public $postPage;
+    public $articlePage;
 
     /**
      * Reference to the page name for linking to categories.
@@ -78,11 +78,11 @@ class Archive extends ComponentBase
                 'default'     => 'theaterPress/category',
                 'group'       => 'Страницы',
             ],
-            'postPage' => [
-                'title'       => 'abnmt.theaterpress::lang.settings.articles_post',
-                'description' => 'abnmt.theaterpress::lang.settings.articles_post_description',
+            'articlePage' => [
+                'title'       => 'abnmt.theaterpress::lang.settings.articles_article',
+                'description' => 'abnmt.theaterpress::lang.settings.articles_article_description',
                 'type'        => 'dropdown',
-                'default'     => 'theaterPress/post',
+                'default'     => 'theaterPress/article',
                 'group'       => 'Страницы',
             ],
         ];
@@ -123,7 +123,7 @@ class Archive extends ComponentBase
         /*
          * Page links
          */
-        $this->postPage     = $this->page['postPage']     = $this->property('postPage');
+        $this->articlePage     = $this->page['articlePage']     = $this->property('articlePage');
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
     }
 
@@ -141,12 +141,12 @@ class Archive extends ComponentBase
         ]);
 
         /*
-         * Add a "url" helper attribute for linking to each post and category
+         * Add a "url" helper attribute for linking to each article and category
          */
-        $articles->each(function($post){
-            $post->setUrl($this->postPage, $this->controller);
+        $articles->each(function($article){
+            $article->setUrl($this->articlePage, $this->controller);
 
-            $post->categories->each(function($category){
+            $article->categories->each(function($category){
                 $category->setUrl($this->categoryPage, $this->controller);
             });
         });

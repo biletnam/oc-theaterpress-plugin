@@ -3,13 +3,13 @@
 # ===================================
 
 # Model List Column configuration
-list: $/abnmt/theaterpress/models/post/columns.yaml
+list: $/abnmt/theaterpress/models/article/columns.yaml
 
 # Model Class name
 modelClass: Abnmt\TheaterPress\Models\Article
 
 # List Title
-title: abnmt.theaterpress::lang.post.list_title
+title: abnmt.theaterpress::lang.article.list_title
 
 # Link URL for each record
 recordUrl: abnmt/theaterpress/articles/update/:id

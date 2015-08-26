@@ -7,6 +7,6 @@ columns:
         label: abnmt.theaterpress::lang.category.name
         searchable: true
 
-    post_count:
+    article_count:
         label: abnmt.theaterpress::lang.category.articles
         sortable: false

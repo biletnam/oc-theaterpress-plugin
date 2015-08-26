@@ -3,10 +3,10 @@
 # ===================================
 
 # Record name
-name: abnmt.theaterpress::lang.post.label
+name: abnmt.theaterpress::lang.article.label
 
 # Model Form Field configuration
-form: $/abnmt/theaterpress/models/post/fields.yaml
+form: $/abnmt/theaterpress/models/article/fields.yaml
 
 # Model Class name
 modelClass: Abnmt\TheaterPress\Models\Article
@@ -16,16 +16,16 @@ defaultRedirect: abnmt/theaterpress/articles
 
 # Create page
 create:
-    title: abnmt.theaterpress::lang.post.create_title
+    title: abnmt.theaterpress::lang.article.create_title
     redirect: abnmt/theaterpress/articles/update/:id
     redirectClose: abnmt/theaterpress/articles
 
 # Update page
 update:
-    title: abnmt.theaterpress::lang.post.update_title
+    title: abnmt.theaterpress::lang.article.update_title
     redirect: abnmt/theaterpress/articles
     redirectClose: abnmt/theaterpress/articles
 
 # Preview page
 preview:
-    title: abnmt.theaterpress::lang.post.preview_title
+    title: abnmt.theaterpress::lang.article.preview_title

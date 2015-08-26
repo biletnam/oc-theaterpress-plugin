@@ -4,15 +4,15 @@
 
 columns:
     title:
-        label: abnmt.theaterpress::lang.post.title
+        label: abnmt.theaterpress::lang.article.title
         searchable: true
 
     categories:
-        label: abnmt.theaterpress::lang.post.categories
+        label: abnmt.theaterpress::lang.article.categories
         relation: categories
         select: name
         searchable: true
         sortable: false
     published_at:
-        label: abnmt.theaterpress::lang.post.published
+        label: abnmt.theaterpress::lang.article.published
         type: date

@@ -7,7 +7,7 @@ use Abnmt\TheaterPress\Models\Category;
 
 use October\Rain\Database\Updates\Seeder;
 
-class SeedPeopleTable extends Seeder
+class SeedPressTable extends Seeder
 {
 
     public function run()
@@ -20,6 +20,11 @@ class SeedPeopleTable extends Seeder
             if (array_key_exists('category', $model)) {
                 $categories = $model['category'];
                 unset($model['category']);
+            }
+
+            if (array_key_exists('relations', $model)) {
+                $relations = $model['relations'];
+                unset($model['relations']);
             }
 
             $model = $this->createModel( 'Abnmt\TheaterPress\Models\Article', $model);

@@ -2,21 +2,17 @@
 
 return [
     'plugin' => [
-        'name' => 'Новости',
-        'description' => 'Плагин новостей',
+        'name' => 'Пресса',
+        'description' => 'Плагин статей прессы',
     ],
     'components' => [
         'archive' => [
-            'name' => 'Архив новостей',
-            'description' => 'Выводит архив новостей',
+            'name' => 'Архив прессы',
+            'description' => 'Выводит архив прессы',
         ],
-        'feed' => [
-            'name' => 'Новостная лента',
-            'description' => 'Выводит новостную ленту',
-        ],
-        'press' => [
-            'name' => 'Новость',
-            'description' => 'Выводит одиночную новость',
+        'article' => [
+            'name' => 'Статья',
+            'description' => 'Выводит одиночную статью',
         ],
     ],
     'category' => [
@@ -40,13 +36,13 @@ return [
         'delete_selected_success' => 'Удалено',
         'delete_selected_empty' => 'Выбор пуст',
     ],
-    'post' => [
+    'article' => [
         'title' => 'Заголовок',
         'categories' => 'Категории',
         'published' => 'Опубликовано',
-        'title_placeholder' => 'Введите заголовок новости',
+        'title_placeholder' => 'Введите заголовок статьи',
         'slug' => 'URL',
-        'slug_placeholder' => 'Введите URL новости',
+        'slug_placeholder' => 'Введите URL статьи',
         'tab_categories' => 'Категории',
         'categories_comment' => 'Доступные категории',
         'categories_placeholder' => 'Выберите категории',
@@ -54,19 +50,19 @@ return [
         'published_on' => 'Дата',
         'summary' => 'Цитата',
         'cover' => 'Обложка',
-        'label' => 'abnmt.theaterpress::lang.post.label',
+        'label' => 'abnmt.theaterpress::lang.article.label',
         'create_title' => 'Создание',
         'update_title' => 'Обновление',
         'preview_title' => 'Просмотр',
-        'list_title' => 'Список новостей',
-        'new' => 'Новая новость',
+        'list_title' => 'Список прессы',
+        'new' => 'Новая статья',
         'tab_content' => 'Содержимое',
     ],
     'articles' => [
-        'menu_label' => 'Новости',
-        'return_to_list' => 'Вернуться к списку новостей',
-        'delete_confirm' => 'Удалить новость?',
-        'delete_selected_confirm' => 'Удалить выбранные новости?',
+        'menu_label' => 'Пресса',
+        'return_to_list' => 'Вернуться к списку прессы',
+        'delete_confirm' => 'Удалить статью?',
+        'delete_selected_confirm' => 'Удалить выбранные статьи?',
         'delete_selected_success' => 'Удалено',
         'delete_selected_empty' => 'Выбор пуст',
     ],

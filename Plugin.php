@@ -2,7 +2,7 @@
 
 use System\Classes\PluginBase;
 
-use Abnmt\TheaterPress\Models\Article     as ArticleModel;
+use Abnmt\TheaterPress\Models\Article  as ArticleModel;
 use Abnmt\TheaterPress\Models\Category as CategoryModel;
 
 use Illuminate\Foundation\AliasLoader;
@@ -33,14 +33,14 @@ class Plugin extends PluginBase
     {
         return [
             'theaterpress' => [
-                'label' => 'Новости',
+                'label' => 'Пресса',
                 'url' => \Backend::url('abnmt/theaterpress/articles'),
-                'icon' => 'icon-presspaper-o',
+                'icon' => 'icon-newspaper-o',
                 'order' => 500,
                 'sideMenu' => [
                     'articles' => [
-                        'label' => 'Новости',
-                        'icon'  => 'icon-presspaper-o',
+                        'label' => 'Статьи',
+                        'icon'  => 'icon-newspaper-o',
                         'url'   => \Backend::url('abnmt/theaterpress/articles'),
                     ],
                     'categories' => [
@@ -60,8 +60,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Abnmt\TheaterPress\Components\Press'    => 'theaterPress',
-            'Abnmt\TheaterPress\Components\Feed'    => 'theaterPressFeed',
+            'Abnmt\TheaterPress\Components\Press'   => 'theaterPress',
             'Abnmt\TheaterPress\Components\Archive' => 'theaterPressArchive',
         ];
     }
