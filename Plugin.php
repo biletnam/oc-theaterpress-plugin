@@ -36,7 +36,7 @@ class Plugin extends PluginBase
                 'label' => 'Пресса',
                 'url' => \Backend::url('abnmt/theaterpress/articles'),
                 'icon' => 'icon-newspaper-o',
-                'order' => 500,
+                'order' => 200,
                 'sideMenu' => [
                     'articles' => [
                         'label' => 'Статьи',
