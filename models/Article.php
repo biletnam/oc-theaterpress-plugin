@@ -48,7 +48,14 @@ class Article extends Model
     public $hasMany = [];
     public $belongsTo = [];
     public $belongsToMany = [
-        'categories' => ['Abnmt\TheaterPress\Models\Category', 'table' => 'abnmt_theaterpress_articles_categories', 'order' => 'name']
+        'categories' => ['Abnmt\TheaterPress\Models\Category', 'table' => 'abnmt_theaterpress_articles_categories', 'order' => 'name'],
+        'performances' => [
+            'Abnmt\Theater\Models\Performance',
+            'table' => 'abnmt_theaterpress_articles_relations',
+            'key' => 'article_id',
+            'otherKey' => 'relation_id',
+            'order' => 'title'
+        ]
     ];
     public $morphTo = [];
     public $morphOne = [];
@@ -105,7 +112,7 @@ class Article extends Model
             'published'  => true
         ], $options));
 
-        $searchableFields = ['title', 'slug', 'excerpt', 'content'];
+        $searchableFields = ['title', 'slug', 'content'];
 
         if ($published)
             $query->isPublished();

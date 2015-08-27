@@ -25,7 +25,7 @@ class Plugin extends PluginBase
             'name'        => 'abnmt.theaterpress::lang.plugin.name',
             'description' => 'abnmt.theaterpress::lang.plugin.description',
             'author'      => 'Abnmt',
-            'icon'        => 'icon-presspaper-o'
+            'icon'        => 'icon-newspaper-o'
         ];
     }
 
@@ -60,7 +60,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Abnmt\TheaterPress\Components\Press'   => 'theaterPress',
+            'Abnmt\TheaterPress\Components\Article' => 'theaterPress',
             'Abnmt\TheaterPress\Components\Archive' => 'theaterPressArchive',
         ];
     }

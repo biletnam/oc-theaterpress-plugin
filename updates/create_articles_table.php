@@ -9,6 +9,7 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::dropIfExists('abnmt_theaterpress_articles');
+        Schema::dropIfExists('abnmt_theaterpress_articles_relations');
         Schema::create('abnmt_theaterpress_articles', function($table)
         {
             $table->engine = 'InnoDB';
@@ -28,11 +29,18 @@ class CreateArticlesTable extends Migration
 
             $table->timestamps();
         });
+        Schema::create('abnmt_theaterpress_articles_relations', function($table)
+        {
+            $table->engine = 'InnoDB';
+            $table->integer('article_id')->unsigned();
+            $table->integer('relation_id')->unsigned();
+            $table->primary(['article_id', 'relation_id'], 'article_relation');
+        });
     }
-
     public function down()
     {
         Schema::dropIfExists('abnmt_theaterpress_articles');
+        Schema::dropIfExists('abnmt_theaterpress_articles_relations');
     }
 
 }

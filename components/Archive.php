@@ -103,7 +103,7 @@ class Archive extends ComponentBase
         $this->prepareVars();
 
         $this->category = $this->page['category'] = $this->loadCategory();
-        $this->articles    = $this->page['articles']    = $this->listArticles();
+        $this->articles = $this->page['articles'] = $this->listArticles();
 
         /*
          * If the page number is not valid, redirect
@@ -118,12 +118,12 @@ class Archive extends ComponentBase
 
     protected function prepareVars()
     {
-        $this->pageParam      = $this->page['pageParam']      = $this->paramName('pageNumber');
+        $this->pageParam = $this->page['pageParam'] = $this->paramName('pageNumber');
 
         /*
          * Page links
          */
-        $this->articlePage     = $this->page['articlePage']     = $this->property('articlePage');
+        $this->articlePage = $this->page['articlePage'] = $this->property('articlePage');
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
     }
 

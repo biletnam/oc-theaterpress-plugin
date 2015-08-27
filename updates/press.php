@@ -200,7 +200,7 @@ return [
         "updated_at"   => "2011-07-04 15:00:00",
         "author"       => "Борислава Шарова",
         "source"       => "Газета «Pro-сцениум» № 1−2 (81−82)",
-        "source_date"  => "2010-01",
+        "source_date"  => "2010-01-01",
         "source_link"  => "http://www.mtfontanka.spb.ru/pro_stceniym/81_82_1_2/13.htm",
         "category"     => ["Пресса"],
         "relations"    => ["Алексей Исполатов"],

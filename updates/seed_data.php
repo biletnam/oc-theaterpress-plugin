@@ -13,6 +13,8 @@ class SeedPressTable extends Seeder
     public function run()
     {
 
+        // echo 'Run' . "\n";
+
         $data = require_once 'press.php';
 
         foreach ($data as $key => $model) {
@@ -27,11 +29,20 @@ class SeedPressTable extends Seeder
                 unset($model['relations']);
             }
 
+            // echo 'Create Model ' . $model['title'] . "\n";
+
             $model = $this->createModel( 'Abnmt\TheaterPress\Models\Article', $model);
 
-            if (isset($categories))
+            if (isset($categories)) {
+                // echo 'Create Category ' . $model->title . "\n";
                 $this->addTaxonomy('Abnmt\TheaterPress\Models\Category', $categories, $model);
             }
+
+            if (isset($relations)) {
+                // echo 'Create Category ' . $model->title . "\n";
+                $this->addRelation('Abnmt\Theater\Models\Performance', $relations, $model);
+            }
+        }
 
     }
 
@@ -60,6 +71,36 @@ class SeedPressTable extends Seeder
                 $model->categories()->add($taxonomy, null);
             }
         }
-
     }
+
+    private function addRelation($relationModel, $relations, $model)
+    {
+
+        foreach ($relations as $key => $relation) {
+            $relation = $this->findModel($relationModel, $relation);
+
+            if (!is_null($relation)) {
+                // echo $relation['slug'] . "\n";
+
+                $model->performances()->add($relation);
+            }
+        }
+    }
+
+    private function findModel($model, $name)
+    {
+
+        $post = $model::where('title', '=', $name)->first();
+        if (!is_null($post)){
+            return $post;
+        }
+
+        echo "Not find relation for " . $name . "\n" ;
+        return NULL;
+    }
+
+
+
+
+
 }

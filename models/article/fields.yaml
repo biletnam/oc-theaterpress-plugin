@@ -49,6 +49,12 @@ secondaryTabs:
             type: relation
             commentAbove: abnmt.theaterpress::lang.article.categories_comment
             placeholder: abnmt.theaterpress::lang.article.categories_placeholder
+        performances:
+            tab: abnmt.theaterpress::lang.article.tab_categories
+            type: relation
+            nameFrom: title
+            commentAbove: abnmt.theaterpress::lang.article.relations_comment
+            placeholder: abnmt.theaterpress::lang.article.relations_placeholder
 
         published:
             tab: abnmt.theaterpress::lang.article.tab_manage
