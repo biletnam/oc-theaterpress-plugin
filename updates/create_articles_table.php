@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('slug')->index();
             $table->text('content')->nullable()->default(null);
+            $table->text('excerpt')->nullable()->default(null);
 
             $table->string('author')->nullable()->default(null);
             $table->string('source')->nullable()->default(null);
