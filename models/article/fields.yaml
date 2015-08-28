@@ -39,7 +39,7 @@ secondaryTabs:
         content:
             tab: abnmt.theaterpress::lang.article.tab_content
             type: richeditor
-            size: huge
+            size: giant
             # stretch: true
             # span: left
             # cssClass: field-slim
