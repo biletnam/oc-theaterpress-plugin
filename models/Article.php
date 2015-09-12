@@ -106,7 +106,7 @@ class Article extends Model
         extract(array_merge([
             'page'       => 1,
             'perPage'    => 10,
-            'sort'       => 'published_at',
+            'sort'       => 'published_at desc',
             'categories' => null,
             'search'     => '',
             'published'  => true
