@@ -1,12 +1,9 @@
 <?php namespace Abnmt\TheaterPress\Components;
 
+use Abnmt\TheaterPress\Models\Article as ArticleModel;
+use Abnmt\TheaterPress\Models\Category as CategoryModel;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
-
-use Abnmt\TheaterPress\Models\Article     as ArticleModel;
-use Abnmt\TheaterPress\Models\Category as CategoryModel;
-
-use CW;
 
 class Archive extends ComponentBase
 {
@@ -15,7 +12,7 @@ class Archive extends ComponentBase
     {
         return [
             'name'        => 'abnmt.theaterpress::lang.components.archive.name',
-            'description' => 'abnmt.theaterpress::lang.components.archive.description'
+            'description' => 'abnmt.theaterpress::lang.components.archive.description',
         ];
     }
 
@@ -52,17 +49,17 @@ class Archive extends ComponentBase
     public function defineProperties()
     {
         return [
-            'pageNumber' => [
+            'pageNumber'      => [
                 'title'       => 'abnmt.theaterpress::lang.settings.articles_pagination',
                 'description' => 'abnmt.theaterpress::lang.settings.articles_pagination_description',
                 'type'        => 'string',
                 'default'     => '{{ :page }}',
             ],
-            'categoryFilter' => [
+            'categoryFilter'  => [
                 'title'       => 'abnmt.theaterpress::lang.settings.articles_filter',
                 'description' => 'abnmt.theaterpress::lang.settings.articles_filter_description',
                 'type'        => 'string',
-                'default'     => ''
+                'default'     => '',
             ],
             'articlesPerPage' => [
                 'title'             => 'abnmt.theaterpress::lang.settings.articles_per_page',
@@ -71,14 +68,14 @@ class Archive extends ComponentBase
                 'validationMessage' => 'abnmt.theaterpress::lang.settings.articles_per_page_validation',
                 'default'           => '10',
             ],
-            'categoryPage' => [
+            'categoryPage'    => [
                 'title'       => 'abnmt.theaterpress::lang.settings.articles_category',
                 'description' => 'abnmt.theaterpress::lang.settings.articles_category_description',
                 'type'        => 'dropdown',
                 'default'     => 'theaterPress/category',
                 'group'       => 'Страницы',
             ],
-            'articlePage' => [
+            'articlePage'     => [
                 'title'       => 'abnmt.theaterpress::lang.settings.articles_article',
                 'description' => 'abnmt.theaterpress::lang.settings.articles_article_description',
                 'type'        => 'dropdown',
@@ -97,7 +94,6 @@ class Archive extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
-
     public function onRun()
     {
         $this->prepareVars();
@@ -111,8 +107,10 @@ class Archive extends ComponentBase
         if ($pageNumberParam = $this->paramName('pageNumber')) {
             $currentPage = $this->property('pageNumber');
 
-            if ($currentPage > ($lastPage = $this->articles->lastPage()) && $currentPage > 1)
+            if ($currentPage > ($lastPage = $this->articles->lastPage()) && $currentPage > 1) {
                 return Redirect::to($this->currentPageUrl([$pageNumberParam => $lastPage]));
+            }
+
         }
     }
 
@@ -123,7 +121,7 @@ class Archive extends ComponentBase
         /*
          * Page links
          */
-        $this->articlePage = $this->page['articlePage'] = $this->property('articlePage');
+        $this->articlePage  = $this->page['articlePage']  = $this->property('articlePage');
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
     }
 
@@ -137,32 +135,32 @@ class Archive extends ComponentBase
         $articles = ArticleModel::with('categories')->listFrontEnd([
             'page'       => $this->property('pageNumber'),
             'perPage'    => $this->property('articlesPerPage'),
-            'categories' => $categories
+            'categories' => $categories,
         ]);
 
         /*
          * Add a "url" helper attribute for linking to each article and category
          */
-        $articles->each(function($article){
+        $articles->each(function ($article) {
             $article->setUrl($this->articlePage, $this->controller);
 
-            $article->categories->each(function($category){
+            $article->categories->each(function ($category) {
                 $category->setUrl($this->categoryPage, $this->controller);
             });
         });
-
-        CW::info(['PressArchive' => $articles]);
 
         return $articles;
     }
 
     protected function loadCategory()
     {
-        if (!$categoryId = $this->property('categoryFilter'))
+        if (!$categoryId = $this->property('categoryFilter')) {
             return null;
+        }
 
-        if (!$category = CategoryModel::whereSlug($categoryId)->first())
+        if (!$category = CategoryModel::whereSlug($categoryId)->first()) {
             return null;
+        }
 
         return $category;
     }

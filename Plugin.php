@@ -1,12 +1,9 @@
 <?php namespace Abnmt\TheaterPress;
 
-use System\Classes\PluginBase;
-
-use Abnmt\TheaterPress\Models\Article  as ArticleModel;
-use Abnmt\TheaterPress\Models\Category as CategoryModel;
-
-use Illuminate\Foundation\AliasLoader;
+use Abnmt\TheaterPress\Models\Article as ArticleModel;
 use Event;
+use Illuminate\Foundation\AliasLoader;
+use System\Classes\PluginBase;
 
 /**
  * TheaterPress Plugin Information File
@@ -25,7 +22,7 @@ class Plugin extends PluginBase
             'name'        => 'abnmt.theaterpress::lang.plugin.name',
             'description' => 'abnmt.theaterpress::lang.plugin.description',
             'author'      => 'Abnmt',
-            'icon'        => 'icon-newspaper-o'
+            'icon'        => 'icon-newspaper-o',
         ];
     }
 
@@ -33,12 +30,12 @@ class Plugin extends PluginBase
     {
         return [
             'theaterpress' => [
-                'label' => 'Пресса',
-                'url' => \Backend::url('abnmt/theaterpress/articles'),
-                'icon' => 'icon-newspaper-o',
-                'order' => 200,
+                'label'    => 'Пресса',
+                'url'      => \Backend::url('abnmt/theaterpress/articles'),
+                'icon'     => 'icon-newspaper-o',
+                'order'    => 200,
                 'sideMenu' => [
-                    'articles' => [
+                    'articles'   => [
                         'label' => 'Статьи',
                         'icon'  => 'icon-newspaper-o',
                         'url'   => \Backend::url('abnmt/theaterpress/articles'),
@@ -68,26 +65,29 @@ class Plugin extends PluginBase
     public function boot()
     {
         $alias = AliasLoader::getInstance();
-        $alias->alias( 'Carbon', '\Carbon\Carbon' );
-        $alias->alias( 'CW', '\Clockwork\Support\Laravel\Facade' );
+        $alias->alias('Carbon', '\Carbon\Carbon');
 
-        /*
+        /**
          * Register menu items for the RainLab.Pages plugin
          */
-        Event::listen('pages.menuitem.listTypes', function() {
+        Event::listen('pages.menuitem.listTypes', function () {
             return [
                 'pressarchive' => 'Архив новостей',
             ];
         });
 
-        Event::listen('pages.menuitem.getTypeInfo', function($type) {
-            if ($type == 'pressarchive')
+        Event::listen('pages.menuitem.getTypeInfo', function ($type) {
+            if ($type == 'pressarchive') {
                 return ArticleModel::getMenuTypeInfo($type);
+            }
+
         });
 
-        Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
-            if ($type == 'pressarchive')
+        Event::listen('pages.menuitem.resolveItem', function ($type, $item, $url, $theme) {
+            if ($type == 'pressarchive') {
                 return ArticleModel::resolveMenuItem($item, $url, $theme);
+            }
+
         });
     }
 
