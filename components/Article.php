@@ -1,11 +1,8 @@
 <?php namespace Abnmt\TheaterPress\Components;
 
+use Abnmt\TheaterPress\Models\Article as ArticleModel;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
-
-use Abnmt\TheaterPress\Models\Article as ArticleModel;
-
-use CW;
 
 class Article extends ComponentBase
 {
@@ -14,7 +11,7 @@ class Article extends ComponentBase
     {
         return [
             'name'        => 'abnmt.theaterpress::lang.components.article.name',
-            'description' => 'abnmt.theaterpress::lang.components.article.description'
+            'description' => 'abnmt.theaterpress::lang.components.article.description',
         ];
     }
 
@@ -28,15 +25,14 @@ class Article extends ComponentBase
      */
     public $categoryPage;
 
-
     public function defineProperties()
     {
         return [
-            'slug' => [
+            'slug'         => [
                 'title'       => 'abnmt.theaterpress::lang.settings.article_slug',
                 'description' => 'abnmt.theaterpress::lang.settings.article_slug_description',
                 'default'     => '{{ :slug }}',
-                'type'        => 'string'
+                'type'        => 'string',
             ],
             'categoryPage' => [
                 'title'       => 'abnmt.theaterpress::lang.settings.article_category',
@@ -55,24 +51,22 @@ class Article extends ComponentBase
     public function onRun()
     {
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
-        $this->article = $this->page['article'] = $this->loadArticle();
+        $this->article      = $this->page['article']      = $this->loadArticle();
     }
 
     protected function loadArticle()
     {
-        $slug = $this->property('slug');
+        $slug    = $this->property('slug');
         $article = ArticleModel::isPublished()->where('slug', $slug)->first();
 
         /*
          * Add a "url" helper attribute for linking to each category
          */
         if ($article && $article->categories->count()) {
-            $article->categories->each(function($category){
+            $article->categories->each(function ($category) {
                 $category->setUrl($this->categoryPage, $this->controller);
             });
         }
-
-        CW::info(['Press' => $article]);
 
         return $article;
     }
